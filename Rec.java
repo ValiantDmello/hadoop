@@ -7,7 +7,7 @@ import org.apache.mahout.cf.taste.impl.similarity.LogLikelihoodSimilarity;
 import org.apache.mahout.cf.taste.model.DataModel;
 
 public class Rec {
-    public static String dataFile = "home/";
+    public static String dataFile = "data/u.data";
     
     public static void main(String args[]) throws IOException, TasteException{
         Datamodel model = new FileDataModel(new File(dataFile));
