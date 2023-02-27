@@ -1,6 +1,8 @@
+from mrjob.job import MRJob
+from mrjob.step import MRStep
+
 class RatingsBreakdown(MRJob):
     def steps(self):
-        def steps(self):
         return [
             MRStep(mapper=self.mapper,
                    reducer=self.reducer1),
