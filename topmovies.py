@@ -4,19 +4,19 @@ from mrjob.step import MRStep
 class RatingsBreakdown(MRJob):
     def steps(self):
         return [
-            MRStep(mapper=self.mapper_get_ratings,
-                   reducer=self.reducer_count_ratings),
-            MRStep(reducer=self.reducer_sorted_output)
+            MRStep(mapper=self.mapper,
+                   reducer=self.reducer1),
+            MRStep(reducer=self.reducer2)
         ]
 
-    def mapper_get_ratings(self, _, line):
+    def mapper(self, _, line):  //mapper function
         (userID, movieID, rating, timestamp) = line.split('\t')
         yield movieID, 1
 
-    def reducer_count_ratings(self, key, values):
+    def reducer1(self, key, values):   //reducer to get ratings count
         yield str(sum(values)).zfill(5), key
 
-    def reducer_sorted_output(self, count, movies):
+    def reducer2(self, count, movies): //reducer to sort as per most ratings
         for movie in movies:
             yield movie, count
 
